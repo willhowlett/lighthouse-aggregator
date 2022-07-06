@@ -44,11 +44,17 @@ const processTestDir = async (reportName: string, testPath: string) => {
       const testName = Array.isArray(nameArray) && nameArray.length > 0 ? nameArray[0] : ''
       const speedIndexScore = parseFloat(idx(jsonContent, _ => _.audits['speed-index'].score))
       const speedIndexMs = parseFloat(idx(jsonContent, _ => _.audits['speed-index'].numericValue))
+      const lcp = parseFloat(idx(jsonContent, _ => _.audits['largest-contentful-paint'].numericValue))
+      const cls = parseFloat(idx(jsonContent, _ => _.audits['cumulative-layout-shift'].numericValue))
+      const tti = parseFloat(idx(jsonContent, _ => _.audits['interactive'].numericValue))
 
       const run: ITestRun = {
         report: reportName,
         speedIndexMs: isNaN(speedIndexMs) ? 0 : speedIndexMs,
         speedIndexScore: isNaN(speedIndexScore) ? 0 : speedIndexScore,
+        lcp: isNaN(lcp) ? 0 : lcp,
+        cls: isNaN(cls) ? 0 : cls,
+        tti: isNaN(tti) ? 0 : tti,
         test: testName,
       }
 
@@ -62,6 +68,11 @@ const processTestDir = async (reportName: string, testPath: string) => {
     speedIndexMsMed: getMedian(runs, 'speedIndexMs').toFixed(2),
     speedIndexScoreAvg: (getAverage(runs, 'speedIndexScore') * 100).toFixed(2),
     speedIndexScoreMed: (getMedian(runs, 'speedIndexScore') * 100).toFixed(2),
+    lcpAvg: getAverage(runs, 'lcp').toFixed(2),
+    lcpMed: getMedian(runs, 'lcp').toFixed(2),
+    clsAvg: getAverage(runs, 'cls').toFixed(2),
+    ttiAvg: getAverage(runs, 'tti').toFixed(2),
+    ttiMed: getMedian(runs, 'tti').toFixed(2),
     test: testPath.split('/')[2],
   }
 

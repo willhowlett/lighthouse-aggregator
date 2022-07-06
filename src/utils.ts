@@ -11,6 +11,9 @@ export interface ITestRun {
   test: string
   speedIndexScore: number
   speedIndexMs: number
+  lcp: number
+  cls: number
+  tti: number
 }
 
 export interface ITestAverage {
@@ -20,6 +23,11 @@ export interface ITestAverage {
   speedIndexMsAvg: string
   speedIndexScoreMed: string
   speedIndexMsMed: string
+  lcpMed: string
+  lcpAvg: string
+  clsAvg: string
+  ttiMed: string
+  ttiAvg: string
 }
 
 export const WriteJsonFile = (path: string, json: object) => fs.writeFileSync(path, json)

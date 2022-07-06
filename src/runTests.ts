@@ -1,7 +1,7 @@
 import * as chromeLauncher from 'chrome-launcher'
 import fs from 'fs'
 import lighthouse from 'lighthouse/lighthouse-core'
-import ReportGenerator from 'lighthouse/lighthouse-core/report/report-generator'
+import ReportGenerator from 'lighthouse/report/generator/report-generator'
 import logger from './logger'
 import { CreateDir, GetDisplayDate, GetJsonFile, GetTestDir, GetTestFilePath, WriteJsonFile } from './utils'
 
@@ -41,7 +41,7 @@ const runTest = async ({ testDirPath, testName, url, options = DEFAULT_CHROME_OP
   try {
     // https://github.com/GoogleChrome/lighthouse/blob/master/types/config.d.ts
     const config = Object.assign(options, {
-      emulatedFormFactor: 'none',
+      formFactor: 'mobile',
       onlyCategories: ['performance'],
       settings: { useThrottling: false },
       throttlingMethod: 'provided',

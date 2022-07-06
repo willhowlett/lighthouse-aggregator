@@ -93,6 +93,11 @@ export const runComparison = async (comparisonName: string, comparisonConfig: IC
       writeLine('Avg Speed (ms)', 'speedIndexMsAvg')
       writeLine('Median Speed Score', 'speedIndexScoreMed')
       writeLine('Median Speed (ms)', 'speedIndexMsMed')
+      writeLine('Avg LCP', 'lcpAvg')
+      writeLine('Median LCP', 'lcpMed')
+      writeLine('Avg CLS', 'clsAvg')
+      writeLine('AvgTTI', 'ttiAvg')
+      writeLine('Median TTI', 'ttiMed')
       csv.write('\n\n')
     }
 
